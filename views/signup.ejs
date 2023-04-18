@@ -1,1 +1,115 @@
-<h1>Sign Up Page</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedo | signup</title>
+    <link rel="stylesheet" href="css/login_styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <div class="signin_image" id="background">
+            <div class="logo_container">
+                <span class="logo">FEEDO</span>
+            </div>
+        </div>
+        <div class="credentials_section">
+            <!-- <div class="content"> -->
+                <!-- Different sections for different stages of registration -->
+                <div class="content" id="user_type_section">
+                    <h2 class="signHeading">Who are you?</h2>
+                            <div class="user_type_icons_container">
+                                <div class="user_type_icons" id="individualBtn">
+                                    <lord-icon
+                                        src="https://cdn.lordicon.com/dqxvvqzi.json"
+                                        trigger="hover"
+                                        colors="outline:#121331,primary:#e2a7d4,secondary:#4bb3fd"
+                                        style="width:150px;height:150px">
+                                    </lord-icon>
+                                    <p>Individual</p>
+                                </div>
+                                <div class="user_type_icons" id="OrganizationBtn">
+                                    <lord-icon
+                                        src="https://cdn.lordicon.com/flvisirw.json"
+                                        trigger="hover"
+                                        colors="primary:#215ad5,secondary:#e2a7d4,tertiary:#ebe6ef"
+                                        style="width:150px;height:150px">
+                                    </lord-icon>
+                                    <p>Organization</p>
+                                </div>
+                            </div>
+                        <p>Already a user? <a href="/signin">Sign In</a></p>
+                </div>
+                <!-- Individual register section -->
+                <div class="content" id="individual_register_section">
+                    <h2 class="signHeading">Let's setup your account</h2>
+                    <div class="form_container">
+                        <form action="/signup?type=individual" method="POST">
+                            <input type="email" name="email" class="credentials_input" id="EmailIndividual" placeholder="Email" required>
+                            <input type="password" name="password" class="credentials_input" id="PasswordIndividual" placeholder="Password" required>
+                            <input type="text" name="confirmPassword" class="credentials_input" id="ConfirmPasswordIndividual" placeholder="Confirm Password" required>
+                            <button type="submit" class="primaryBtn">Sign Up</button>
+                        </form>
+
+                    </div>
+                    <p>Already a user? <a href="/signin">Sign In</a></p>
+                </div>
+                <!-- Organization credentials screen -->
+                <div class="content" id="organizations_register_section">
+                    <h2 class="signHeading">Let's setup your account</h2>
+                    <div class="form_container">
+                        <form action="/signup?type=organization" method="POST">
+                            <input type="email" name="email" class="credentials_input" id="EmailOrganization" placeholder="Email" required>
+                            <input type="password" name="password" class="credentials_input" id="PasswordOrganization" placeholder="Password" required>
+                            <input type="text" name="confirmPassword" class="credentials_input" id="ConfirmPasswordOrganization" placeholder="Confirm Password" required>
+                            <button type="submit" class="primaryBtn">Sign Up</button>
+                        </form>
+
+                    </div>
+                    <p>Already a user? <a href="/signin">Sign In</a></p>
+                </div>
+                <!-- organization setup screen -->
+                <div class="content" id="organizations_setup_section">
+                    <h2 class="signHeading">Almost there!!</h2>
+                    <div class="form_container">
+                        <form action="/signup/createOrganization" method="POST">
+                            <input type="text" name="OrganizationName" id="OrganizationName" class="credentials_input" placeholder="Organization Name" required>
+                            <input type="number" name="Team Size" min="0" max="1000" id="TeamSize" class="credentials_input" placeholder="Team size" required>
+                            <select name="category" id="OrganizationCategory" class="credentials_input" required>
+                                <option value="" disabled selected>Select Category</option>
+                                <option value="Services">Services</option>
+                                <option value="Products">Product</option>
+                            </select>
+                            <button type="submit" class="primaryBtn">Create Now</button>
+                        </form>
+
+                    </div>
+                    <p>Already a user? <a href="/signin">Sign In</a></p>
+                </div>
+            <!-- </div> -->
+        </div>
+   </div>
+   <!-- Scripts for the background- vanta.js -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.trunk.min.js"></script>
+   <script>
+    VANTA.TRUNK({
+      el: "#background",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0x783ca4,
+      backgroundColor: 0xf9f9f9
+    })
+    </script>
+    <!-- script for the aimating icons -->
+    <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
+    <!-- script to handle the registration page -->
+</body>
+</html>

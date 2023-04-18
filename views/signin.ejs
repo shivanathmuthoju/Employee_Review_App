@@ -1,1 +1,51 @@
-<h1>Sign in page</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedo | Sign In</title>
+    <link rel="stylesheet" href="css/login_styles.css">
+<body>
+   <div class="container">
+        <div class="signin_image" id="background">
+            <div class="logo_container">
+                <span class="logo">FEEDO</span>
+            </div>
+        </div>
+        <div class="credentials_section">
+            <div class="content">
+                <h2 class="signHeading">Sign In</h2>
+                <div class="form_container">
+                    <form action="/signin" method="POST">
+                        <input type="email" name="email" class="credentials_input" id="loginEmail" placeholder="Email" required>
+                        <input type="password" name="password" class="credentials_input" id="loginPassword" placeholder="Password" required>
+                        <button type="submit" class="primaryBtn">Sign In</button>
+                    </form>
+
+                </div>
+                <p>New to Feedo? <a href="/signup">Join Now</a></p>
+            </div>
+        </div>
+   </div>
+   <!-- script for the background -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.trunk.min.js"></script>
+   <script>
+    VANTA.TRUNK({
+      el: "#background",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0x783ca4,
+      backgroundColor: 0xf9f9f9,
+      chaos : 1,
+      spacing : 0
+    })
+    </script>
+</body>
+</html>
