@@ -21,14 +21,14 @@
                 <div class="content" id="user_type_section">
                     <h2 class="signHeading">Who are you?</h2>
                             <div class="user_type_icons_container">
-                                <div class="user_type_icons" id="individualBtn">
+                                <div class="user_type_icons" id="employeeBtn">
                                     <lord-icon
                                         src="https://cdn.lordicon.com/dqxvvqzi.json"
                                         trigger="hover"
                                         colors="outline:#121331,primary:#e2a7d4,secondary:#4bb3fd"
                                         style="width:150px;height:150px">
                                     </lord-icon>
-                                    <p>Individual</p>
+                                    <p>Employee</p>
                                 </div>
                                 <div class="user_type_icons" id="OrganizationBtn">
                                     <lord-icon
@@ -43,13 +43,13 @@
                         <p>Already a user? <a href="/signin">Sign In</a></p>
                 </div>
                 <!-- Individual register section -->
-                <div class="content" id="individual_register_section">
+                <div class="content" id="employee_register_section">
                     <h2 class="signHeading">Let's setup your account</h2>
                     <div class="form_container">
-                        <form action="/signup?type=individual" method="POST">
-                            <input type="email" name="email" class="credentials_input" id="EmailIndividual" placeholder="Email" required>
-                            <input type="password" name="password" class="credentials_input" id="PasswordIndividual" placeholder="Password" required>
-                            <input type="text" name="confirmPassword" class="credentials_input" id="ConfirmPasswordIndividual" placeholder="Confirm Password" required>
+                        <form action="/signup?type=Employee" method="POST" id="employeeRegistrationForm">
+                            <input type="email" name="email" class="credentials_input" id="EmailEmployee" placeholder="Email" required>
+                            <input type="password" name="password" class="credentials_input" id="PasswordEmployee" placeholder="Password" required>
+                            <input type="text" name="confirmPassword" class="credentials_input" id="ConfirmPasswordEmployee" placeholder="Confirm Password" required>
                             <button type="submit" class="primaryBtn">Sign Up</button>
                         </form>
 
@@ -60,7 +60,7 @@
                 <div class="content" id="organizations_register_section">
                     <h2 class="signHeading">Let's setup your account</h2>
                     <div class="form_container">
-                        <form action="/signup?type=organization" method="POST">
+                        <form action="/signup?type=Organization" method="POST" id="organizationRegistrationForm">
                             <input type="email" name="email" class="credentials_input" id="EmailOrganization" placeholder="Email" required>
                             <input type="password" name="password" class="credentials_input" id="PasswordOrganization" placeholder="Password" required>
                             <input type="text" name="confirmPassword" class="credentials_input" id="ConfirmPasswordOrganization" placeholder="Confirm Password" required>
@@ -111,5 +111,6 @@
     <!-- script for the aimating icons -->
     <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
     <!-- script to handle the registration page -->
+    <script src="js/signUpSectionsHandler.js"></script>
 </body>
 </html>

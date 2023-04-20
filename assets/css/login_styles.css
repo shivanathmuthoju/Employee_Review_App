@@ -56,13 +56,15 @@
 }
 
 .content {
-    min-height: 100%;
+    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: poppins;
+    overflow: hidden;
+    transition: all .75s ease-in-out;
 }
 
 .form_container {
@@ -136,6 +138,18 @@ user type section */
 
 /* Individual Sign in section */
 
+#user_type_section {
+    height: 0;
+}
 
+#employee_register_section{
+    height: 0;
+    
+}
+#organizations_register_section  {
+    height: 0;
+}
 
-
+#organizations_setup_section {
+    height: 0;
+}
