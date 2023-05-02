@@ -1,22 +1,47 @@
-const Users = require('../models/users')
+const User = require('../models/users')
+// const Users = require('../models/users')
+const Employee = require('../models/employees');
+const Organization = require('../models/organizations');
 
 module.exports.signup = (req,res) => {
-    res.render('../views/signup.ejs')
+    if(req.isAuthenticated()) {
+        return res.redirect('/profile');
+    } 
+
+    return res.render('../views/signup.ejs')
 }
 
 module.exports.createUser = async (req, res) => {
-    let user = await Users.find({email : req.query.email})
+    let user = await User.find({email : req.body.email})
     
-    if(user) {
+    if(user.length > 0) {
         console.log("User Exists", user);
-        res.redirect('/signin')
+        return res.redirect('/signin');
     }
     else {
-        User.create({
-            email : req.body.email,
-            password : req.body.password,
-            userType : req.query.type
-        })
-        res.render('welcome.ejs')
+        console.log(req.query)
+        if(req.query.type == "Employee") {
+            console.log("Employee Function")
+            let userCreated = await User.create({
+                email : req.body.email,
+                password : req.body.password,
+                userType : req.query.type
+            })
+            await Employee.create({
+                email : req.body.email,
+                userId : userCreated._id
+            })
+            return res.render('welcome.ejs');
+        }
+        else if(req.query.type == "Organization") {
+            console.log("Organization Function")
+            User.create({
+                email : req.body.email,
+                password : req.body.password,
+                userType : req.query.type
+            })
+            
+             
+        }
     }
 }

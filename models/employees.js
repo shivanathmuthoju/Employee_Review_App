@@ -1,45 +1,55 @@
 const mongoose = require('mongoose');
 
-const EmployeeSchema = new mongoose.Schema({
+const employeeSchema = new mongoose.Schema({
+    name : {
+        type : String,
+    },
     email : {
         type : String,
         required : true
     },
-    name : {
-        type : String,
-        required : true
-    },
-    employeeID : {
-        type : String,
-        required : true
-    },
-    role : {
-        type : String,
+    userId : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'User',
         required : true
     },
     company : {
-        [
-            id : {
-                type : mongoose.Schema.Types.Array,
-                ref : 'Organization'
+        name : {
+            dtype : String,
+        },
+        id : {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : 'Organization'
+        }}
+    ,
+    position : {
+        type : String
+    },
+    isAdmin : {
+        type : mongoose.Schema.Types.Boolean,
+        default : false,
+        required : true
+    },
+    reviewsRequested : [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'Review'
+    }],
+    reviewsReceived : [
+        {
+            rating : {
+                type : mongoose.Schema.Types.Number,
             },
-            Joined : {
-                type : mongoose.Schema.Types.Boolean
+            reviewId : {
+                type : mongoose.Schema.Types.ObjectId,
+                ref : 'Review'
             }
+        }
+    ]
 
-        ]
-    },
-    feedbacksReceived : {
-        type : mongoose.Schema.Types.Array
-    },
-    feedbacksRequested : {
-        type : mongoose.Schema.Types.Array
-    }
-    
-}, {
+},{
     timestamps : true
 });
 
-const Employee = mongoose.model("Employee", EmployeeSchema);
+const Employee = mongoose.model("Employee", employeeSchema);
 
 module.exports = Employee;

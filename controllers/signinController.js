@@ -1,3 +1,12 @@
 module.exports.signin = (req,res) => {
-    res.render('../views/signin.ejs')
+
+    if(req.isAuthenticated()) {
+        return res.redirect('/profile');
+    }
+
+    return res.render('../views/signin.ejs')
+}
+
+module.exports.login = (req, res) => {
+    return res.redirect('/profile')
 }

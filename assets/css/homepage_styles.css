@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+
+:root {
+    --primary-blue : #215AD5;
+    --mid-blue : #8180D5;
+    --pink : #E2A7D4;
+}
+
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    overflow: hidden;
+    /* justify-content: center;
+    align-items: center; */
+}
+
+.home_image_conatiner {
+    height: 100%;
+    width: 50%;
+    display: grid;
+    place-items: center;
+}
+
+.home_text_container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Bungee Shade', cursive;
+    color : var(--mid-blue);
+    /* font-size: 1.5em; */
+    letter-spacing: .25em;
+}
+
+.btn_container {
+    width: 100%;
+    padding: 10px 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.primaryBtn {
+    border: none;
+    border-radius: 10px;
+    outline: 0;
+    color: white;
+    font-family: poppins;
+    font-weight: 600;
+    padding: 10px 30px;
+    background-image: linear-gradient(to right, var(--primary-blue), var(--mid-blue), var(--pink));
+    margin: 0px 10px;
+    cursor: pointer;
+    /* width: 40%; */
+}
+
+
+.subtitle {
+    font-size : 1.5em;
+    font-family : poppins;
+    font-weight : 300;
+}
+
+
+

@@ -53,7 +53,8 @@ organizationRegistrationForm.addEventListener('submit', (e) => {
     let password = document.getElementById("PasswordOrganization").value;
     let confirmPassword = document.getElementById("ConfirmPasswordOrganization").value;
     if(password == confirmPassword) {
-        employeeRegistrationForm.submit();
+        organizationRegistrationForm.submit();
+        hideAllSections(organizationSetupSection);
     }
     else {
         alert("Password Mismatch")

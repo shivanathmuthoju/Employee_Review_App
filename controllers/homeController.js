@@ -1,7 +1,12 @@
 module.exports.home = (req, res) => {
-    res.render('home.ejs', {title : "Hey"})
+
+    if(req.isAuthenticated()) {
+        return res.redirect('/profile');
+    }
+
+    return res.render('home.ejs', {title : "Hey"})
 }
 
 module.exports.welcome = (req, res) => {
-    res.render('welcome.ejs')
+    return res.render('welcome.ejs')
 }

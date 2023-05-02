@@ -1,10 +1,14 @@
 const mongoose = require('mongoose');
 
 const OrganizationSchema = new mongoose.Schema({
+    userId : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "User"
+    },
     email : {
         type : String,
         required : true
-    }
+    },
     name : {
         type : String,
         required : true
@@ -17,11 +21,10 @@ const OrganizationSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    roles : [{type : String}],
-    employees : [{type : mongoose.Schema.Types.ObjectId}, ref : "Employee"],
-    employeesPending : [{type : mongoose.Schema.Types.ObjectId}, ref : "Employee"]
-}, {
-    timestamps : true
+    employees : [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "Employee"
+    }]
 });
 
 
