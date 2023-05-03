@@ -21,7 +21,7 @@
                 <div class="content" id="user_type_section">
                     <h2 class="signHeading">Who are you?</h2>
                             <div class="user_type_icons_container">
-                                <div class="user_type_icons" id="employeeBtn">
+                                <button class="user_type_icons" id="employeeBtn">
                                     <lord-icon
                                         src="https://cdn.lordicon.com/dqxvvqzi.json"
                                         trigger="hover"
@@ -29,8 +29,8 @@
                                         style="width:150px;height:150px">
                                     </lord-icon>
                                     <p>Employee</p>
-                                </div>
-                                <div class="user_type_icons" id="OrganizationBtn">
+                                </button>
+                                <button class="user_type_icons" id="OrganizationBtn">
                                     <lord-icon
                                         src="https://cdn.lordicon.com/flvisirw.json"
                                         trigger="hover"
@@ -38,7 +38,7 @@
                                         style="width:150px;height:150px">
                                     </lord-icon>
                                     <p>Organization</p>
-                                </div>
+                                </button>
                             </div>
                         <p>Already a user? <a href="/signin">Sign In</a></p>
                 </div>
@@ -47,6 +47,7 @@
                     <h2 class="signHeading">Let's setup your account</h2>
                     <div class="form_container">
                         <form action="/signup?type=Employee" method="POST" id="employeeRegistrationForm">
+                            <input type="text" name="EmployeeName" class="credentials_input" id="EmployeeName" placeholder="Name" required>
                             <input type="email" name="email" class="credentials_input" id="EmailEmployee" placeholder="Email" required>
                             <input type="password" name="password" class="credentials_input" id="PasswordEmployee" placeholder="Password" required>
                             <input type="text" name="confirmPassword" class="credentials_input" id="ConfirmPasswordEmployee" placeholder="Confirm Password" required>
@@ -57,21 +58,27 @@
                     <p>Already a user? <a href="/signin">Sign In</a></p>
                 </div>
                 <!-- Organization credentials screen -->
-                <div class="content" id="organizations_register_section">
-                    <h2 class="signHeading">Let's setup your account</h2>
-                    <div class="form_container">
-                        <form action="/signup?type=Organization" method="POST" id="organizationRegistrationForm">
-                            <input type="email" name="email" class="credentials_input" id="EmailOrganization" placeholder="Email" required>
-                            <input type="password" name="password" class="credentials_input" id="PasswordOrganization" placeholder="Password" required>
-                            <input type="text" name="confirmPassword" class="credentials_input" id="ConfirmPasswordOrganization" placeholder="Confirm Password" required>
-                            <button type="submit" class="primaryBtn">Sign Up</button>
-                        </form>
-
+                <form class="content" action="/signup?type=Organization" method="POST" id="organizationRegistrationForm">
+                    <div class="organization_" id="organizations_register_section">
+                        <h2 class="signHeading">Let's setup your account</h2>
+                        <div class="form_container">
+                                <input type="email" name="email" class="credentials_input" id="EmailOrganization" placeholder="Email" required>
+                                <input type="password" name="password" class="credentials_input" id="PasswordOrganization" placeholder="Password" required>
+                                <input type="text" name="confirmPassword" class="credentials_input" id="ConfirmPasswordOrganization" placeholder="Confirm Password" required>
+                                <input type="text" name="OrganizationName" id="OrganizationName" class="credentials_input" placeholder="Organization Name" required>
+                                <input type="number" name="Team Size" min="0" max="1000" id="TeamSize" class="credentials_input" placeholder="Team size" required>
+                                <select name="category" id="OrganizationCategory" class="credentials_input" required>
+                                    <option value="" disabled selected>Select Category</option>
+                                    <option value="Services">Services</option>
+                                    <option value="Products">Product</option>
+                                </select>
+                                <button type="submit" class="primaryBtn" id="OrganizationCredentialsSubmit">Sign Up</button>
+                        </div>
+                        <p>Already a user? <a href="/signin">Sign In</a></p>
                     </div>
-                    <p>Already a user? <a href="/signin">Sign In</a></p>
-                </div>
-                <!-- organization setup screen -->
-                <div class="content" id="organizations_setup_section">
+                    
+                </form>
+                <!-- <div class="content" id="organizations_setup_section">
                     <h2 class="signHeading">Almost there!!</h2>
                     <div class="form_container">
                         <form action="/signup/createOrganization" method="POST">
@@ -87,7 +94,7 @@
 
                     </div>
                     <p>Already a user? <a href="/signin">Sign In</a></p>
-                </div>
+                </div> -->
             <!-- </div> -->
         </div>
    </div>

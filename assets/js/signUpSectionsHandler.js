@@ -1,13 +1,23 @@
 let userTypeSection = document.getElementById("user_type_section");
 let employeeRegisterSection = document.getElementById("employee_register_section");
 let organizationRegisterSection = document.getElementById("organizations_register_section");
-let organizationSetupSection = document.getElementById("organizations_setup_section");
+// let organizationSetupSection = document.getElementById("organizations_setup_section");
 let employeeRegistrationForm = document.getElementById("employeeRegistrationForm");
-let organizationRegistrationForm = document.getElementById("organizationRegistrationForm")
+let organizationRegistrationForm = document.getElementById("organizationRegistrationForm");
+
+
+
+
+let organizationCredBtn = document.getElementById("OrganizationCredentialsSubmit");
 
 // array containing all the sections 
 
-let sections = [userTypeSection, employeeRegisterSection, organizationRegisterSection, organizationSetupSection]
+let sections = [
+    userTypeSection, 
+    employeeRegisterSection, 
+    organizationRegisterSection, 
+    // organizationSetupSection
+]
 
 // function to set all the heights to zero except for the active section
 
@@ -16,8 +26,10 @@ function hideAllSections(sectionToShow) {
     for(let section of sections) {
         console.log(section)
         section.style.height = "0";
+        section.style.display = "none";
     }
     sectionToShow.style.height = "100%";
+    sectionToShow.style.display = "flex";
 }
 
 // setting the initial height of all sections expcept the Usertype to zero;
@@ -32,6 +44,12 @@ document.getElementById("employeeBtn").addEventListener('click', () => {
 
 document.getElementById("OrganizationBtn").addEventListener('click', () => {
     hideAllSections(organizationRegisterSection); //shows organization register section
+    // let inputs = [...document.querySelectorAll("#organizations_setup_section input,select")]
+    // console.log(inputs)
+    // inputs.forEach(input => {
+    //     input.setAttribute("disabled", true)
+    // })
+
 })
 
 // employee registration form 
@@ -48,6 +66,7 @@ employeeRegistrationForm.addEventListener('submit', (e) => {
     }
 })
 
+
 organizationRegistrationForm.addEventListener('submit', (e) => {
     e.preventDefault();
     let password = document.getElementById("PasswordOrganization").value;
@@ -60,3 +79,20 @@ organizationRegistrationForm.addEventListener('submit', (e) => {
         alert("Password Mismatch")
     }
 })
+
+// organizationCredBtn.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     organizationRegistrationForm.reportValidity();
+//     let passwordValue = document.getElementById("PasswordOrganization").value;
+//     let confirmPasswordValue = document.getElementById("ConfirmPasswordOrganization").value;
+
+//     if(passwordValue === confirmPasswordValue) {
+//         console.log("Passwords Match");
+        
+//     }
+//     else {
+//         alert("Password Mismatch");
+//     }
+// })
+
+
