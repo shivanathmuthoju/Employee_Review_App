@@ -47,7 +47,7 @@
                     <h2 class="signHeading">Let's setup your account</h2>
                     <div class="form_container">
                         <form action="/signup?type=Employee" method="POST" id="employeeRegistrationForm">
-                            <input type="text" name="EmployeeName" class="credentials_input" id="EmployeeName" placeholder="Name" required>
+                            <input type="text" name="employeeName" class="credentials_input" id="EmployeeName" placeholder="Name" required>
                             <input type="email" name="email" class="credentials_input" id="EmailEmployee" placeholder="Email" required>
                             <input type="password" name="password" class="credentials_input" id="PasswordEmployee" placeholder="Password" required>
                             <input type="text" name="confirmPassword" class="credentials_input" id="ConfirmPasswordEmployee" placeholder="Confirm Password" required>
@@ -66,7 +66,7 @@
                                 <input type="password" name="password" class="credentials_input" id="PasswordOrganization" placeholder="Password" required>
                                 <input type="text" name="confirmPassword" class="credentials_input" id="ConfirmPasswordOrganization" placeholder="Confirm Password" required>
                                 <input type="text" name="OrganizationName" id="OrganizationName" class="credentials_input" placeholder="Organization Name" required>
-                                <input type="number" name="Team Size" min="0" max="1000" id="TeamSize" class="credentials_input" placeholder="Team size" required>
+                                <input type="number" name="TeamSize" min="0" max="1000" id="TeamSize" class="credentials_input" placeholder="Team size" required>
                                 <select name="category" id="OrganizationCategory" class="credentials_input" required>
                                     <option value="" disabled selected>Select Category</option>
                                     <option value="Services">Services</option>

@@ -27,19 +27,33 @@ module.exports.createUser = async (req, res) => {
                 password : req.body.password,
                 userType : req.query.type
             })
-            await Employee.create({
+            let newEmployee = await Employee.create({
                 email : req.body.email,
-                userId : userCreated._id
+                userId : userCreated._id,
+                name : req.body.employeeName
             })
+
+            userCreated.userData = newEmployee._id;
+
+            await userCreated.save();
+            
             return res.render('welcome.ejs');
         }
         else if(req.query.type == "Organization") {
             console.log("Organization Function")
-            User.create({
+            let userCreated = await User.create({
                 email : req.body.email,
                 password : req.body.password,
                 userType : req.query.type
             })
+            await Organization.create({
+                userId : userCreated._id,
+                email : req.body.email,
+                name : req.body.OrganizationName,
+                teamSize : req.body.TeamSize,
+                category : req.body.category
+            })
+            return res.render('welcome.ejs');
             
              
         }

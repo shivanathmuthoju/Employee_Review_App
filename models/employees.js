@@ -15,13 +15,13 @@ const employeeSchema = new mongoose.Schema({
     },
     company : {
         name : {
-            dtype : String,
+            type : String,
         },
         id : {
             type : mongoose.Schema.Types.ObjectId,
             ref : 'Organization'
-        }}
-    ,
+        }
+    },
     position : {
         type : String
     },
