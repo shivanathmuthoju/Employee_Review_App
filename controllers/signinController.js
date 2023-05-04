@@ -1,3 +1,5 @@
+
+
 module.exports.signin = (req,res) => {
 
     if(req.isAuthenticated()) {
@@ -8,5 +10,8 @@ module.exports.signin = (req,res) => {
 }
 
 module.exports.login = (req, res) => {
+    
+    
+
     return res.redirect('/profile')
 }
