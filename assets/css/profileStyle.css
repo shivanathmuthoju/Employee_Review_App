@@ -38,17 +38,39 @@
     color: rgb(47, 46, 65)
 }
 
+/* dashboard styles */
+
 .dashboard-container {
     width: 100%;
     height: 90%;
     /* border: 1px solid blue; */
+    
+}
+
+
+.prompt-img-container {
+    padding-bottom: 10px;
+}
+
+.dashboard-section {
+    height: 100%;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#addUsersForm {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+}
+
+
+
+.active {
+    display: flex;
 
 }
 
-.prompt-img {
-    margin-bottom: 10px;
-}

@@ -46,14 +46,21 @@ module.exports.createUser = async (req, res) => {
                 password : req.body.password,
                 userType : req.query.type
             })
-            await Organization.create({
+            let organizationCreated = await Organization.create({
                 userId : userCreated._id,
                 email : req.body.email,
                 name : req.body.OrganizationName,
                 teamSize : req.body.TeamSize,
                 category : req.body.category
             })
+
+            userCreated.userData = organizationCreated._id;
+
+            await userCreated.save();
+            
             return res.render('welcome.ejs');
+
+
             
              
         }
