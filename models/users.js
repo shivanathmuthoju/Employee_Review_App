@@ -4,7 +4,8 @@ const UserSchema = new mongoose.Schema({
     email : {
         type : String,
         required : true,
-        unique : true
+        unique : true,
+        lowercase : true
     },
     password : {
         type : String,
@@ -17,10 +18,10 @@ const UserSchema = new mongoose.Schema({
     userData : {
         type : mongoose.Schema.Types.ObjectId,
         ref : function () {
-            if (UserType == "Individual") {
+            if (this.userType == "Employee") {
                 return "Employee"
             }
-            else {
+            else if (this.userType == "Organization"){
                 return "Organization"
             }
         }

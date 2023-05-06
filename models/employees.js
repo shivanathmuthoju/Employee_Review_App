@@ -6,7 +6,8 @@ const employeeSchema = new mongoose.Schema({
     },
     email : {
         type : String,
-        required : true
+        required : true,
+        lowercase : true
     },
     userId : {
         type : mongoose.Schema.Types.ObjectId,

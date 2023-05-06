@@ -3,15 +3,29 @@ const mongoose = require('mongoose');
 const invitationSchema = new mongoose.Schema({
     email : {
         type : String,
+        required : true,
+        lowercase : true
+    },
+    companyId : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "Organization",
         required : true
     },
-    comapnayId : {
-        type : mongoose.Schema.Types.ObjectId,
-        ref : "Organization"
+    inviter : {
+        type : String,
+        required : true
     },
     invitationBy : {
         type : mongoose.Schema.Types.ObjectId,
-        ref : 'User'
+        ref : function () {
+            if (this.inviter == "Employee") {
+                return "Employee"
+            }
+            else {
+                return "Organization"
+            }
+        },
+        required : true
     },
     status : {
         type : String,
@@ -21,3 +35,5 @@ const invitationSchema = new mongoose.Schema({
 });
 
 const Invitation = mongoose.model("Invitation", invitationSchema);
+
+module.exports = Invitation;

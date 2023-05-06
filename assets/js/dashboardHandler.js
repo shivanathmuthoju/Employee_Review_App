@@ -1,18 +1,32 @@
 
 // creating variables for all screens in dashboard
 
-let homeScreen = document.getElementById("dashboard-home");
-let addUsersScreen = document.getElementById("dashboard-add-users")
-
+const homeScreen = document.getElementById("dashboard-home");
+const addUsersScreen = document.getElementById("dashboard-add-users")
+const addUsersBtn = document.getElementById("addUsersBtn")
 
 let deafultScreen = document.querySelector(".active");
+let activeScreen = sessionStorage.getItem("activeScreen");
+
+console.log(activeScreen)
 
 // sets the home screen to visible
 
-if(deafultScreen === null) {
+if(activeScreen === null) {
 
     homeScreen.classList.add("active")
+    // sessionStorage.setItem('activeScreen', "dashboard-home");
+    setActiveScreen("dashboard-home")
+}
+else {
+    document.getElementById(activeScreen).classList.add('active');
+}
 
+
+//sets session storage to current screen
+
+function setActiveScreen(screen) {
+    sessionStorage.setItem('activeScreen', screen);
 }
 
 //hides active screen 
@@ -26,7 +40,8 @@ function hideActive() {
 
 function getHome() {
     hideActive();
-    homeScreen.classList.add('active')
+    homeScreen.classList.add('active');
+    setActiveScreen("dashboard-home");
 }
 
 //hides all screens and shows add users screen when btn is clicked
@@ -34,7 +49,7 @@ function getHome() {
 function addUsers () {
     
     hideActive();
-    addUsersScreen.classList.add("active") // sets add users screen as active.
-
+    addUsersScreen.classList.add("active"); // sets add users screen as active.
+    setActiveScreen("dashboard-add-users");
 
 }

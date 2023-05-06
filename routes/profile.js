@@ -20,4 +20,8 @@ router.get('/signout',
 );
 
 
+//add users
+
+router.post('/addUsers', profileController.sendInvite)
+
 module.exports = router;
