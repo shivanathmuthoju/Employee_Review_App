@@ -29,7 +29,7 @@
     transition: all 0.25s ease-in-out;
 }
 
-.menu-btns:hover, .menu-btns:focus {
+.menu-btns:hover {
     transform: scale(1.2);
 }
 
@@ -92,6 +92,20 @@
     padding: 50px;
 }
 
+.dashboard-invitations-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.inviteContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center ;
+}
+
 
 .active {
     display: flex;
@@ -123,4 +137,11 @@
 
 .error {
     background-color: red;
+}
+
+
+/* sets all button icons and text to not pointer events */
+
+button > * {
+    pointer-events: none;
 }

@@ -6,7 +6,7 @@ const invitationSchema = new mongoose.Schema({
         required : true,
         lowercase : true
     },
-    companyId : {
+    company : {
         type : mongoose.Schema.Types.ObjectId,
         ref : "Organization",
         required : true

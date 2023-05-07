@@ -22,6 +22,10 @@ router.get('/signout',
 
 //add users
 
-router.post('/addUsers', profileController.sendInvite)
+router.post('/addUsers', profileController.sendInvite);
+
+// get invitaions of the user
+
+router.get('/getInvitations', profileController.getInvitaions);
 
 module.exports = router;
