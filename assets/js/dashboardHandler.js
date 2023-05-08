@@ -19,6 +19,16 @@ let deafultScreen = document.querySelector(".active");
 let activeScreen = sessionStorage.getItem("activeScreen");
 
 
+//object of screens and menu button combinations
+
+const activsScreenBtns = {
+
+    "dashboard-home" : "menuHomeBtn",
+    "dashboard-add-users" : "menuAddUsersBtn",
+    "dashboard-invitations" : "menuInvitationsBtn"
+
+}
+
 
 // sets the home screen to visible
 
@@ -29,7 +39,12 @@ if(activeScreen === null) {
 }
 else {
     document.getElementById(activeScreen).classList.add('active');
+   
 }
+
+window.addEventListener('load', () => {
+    document.getElementById(activsScreenBtns[activeScreen]).click();
+})
 
 //sets session storage to current screen
 
@@ -79,31 +94,78 @@ menuSignOutBtn.addEventListener('click', function () {
 
 menuInvitaionsBtn.addEventListener('click', async function(e) {
 
+    console.log("Invitaions")
     hideActive();
     invitationsScreen.classList.add('active');
     setActiveScreen("dashboard-invitations");
 
     let userType = e.target.dataset.type;
+    let isAdmin = e.target.dataset.admin;
 
     let invitations = await fetch(`profile/getInvitations`)
-    .then(res => res.json())
+        .then(res => res.json())
 
-    let invitationsContainer = document.querySelector(".dashboard-invitations-container");
+        let invitationsContainer = document.querySelector(".dashboard-invitations-container");
+        invitationsContainer.innerHTML = ""
 
-    for(let invite of invitations) {
+    if(userType == "Employee" && isAdmin == "false") {
 
-        let inviteContainer = document.createElement('div')
-        inviteContainer.classList.add('inviteContainer')
+        for(let invite of invitations) {
 
-        inviteContainer.innerHTML = `
+            let inviteContainer = document.createElement('div')
+            inviteContainer.classList.add('inviteContainer')
 
-            <p>${invite.email}</p>
-            <p>${invite.company.name}</p>
-            <p>${invite.invitationBy.email}</p>
+            inviteContainer.innerHTML = `
 
-        `
+            <div class="invite-status-container">
+                <span class="invite-status-indicator"></span>
+                <p class="invite-status-text">${invite.status}</p>
+            </div>
+            <div class="invite-info"> 
+                <p><strong>Company : </strong> ${invite.company.name}</p>
+                <p><strong>Position : </strong> ${invite.position}</p>
+                <p><strong>Invited By : </strong>  ${invite.invitationBy.name}</p>
+            </div>
+            <div class="invite-button-container">
+                <button class="invite-accept-button" data-inviteId=${invite._id}>Accept</button>
+                <button class="invite-reject-button" data-inviteId=${invite._id}>Reject</button>
+            </div>                
 
-        invitationsContainer.appendChild(inviteContainer)
+            `
 
+            invitationsContainer.appendChild(inviteContainer)
+
+
+
+    } 
+    
+} else {
+
+        
+        for(let invite of invitations) {
+
+            let inviteContainer = document.createElement('div')
+            inviteContainer.classList.add('inviteContainer')
+
+            inviteContainer.innerHTML = `
+
+            <div class="invite-status-container">
+                <span class="invite-status-indicator"></span>
+                <p class="invite-status-text">${invite.status}</p>
+            </div>
+            <div class="invite-info"> 
+                <p><strong>Email: </strong> ${invite.email}</p>
+                <p><strong>Position : </strong> ${invite.position}</p>
+                <p><strong>Is Admin : </strong> ${invite.isAdmin} </p>
+                <p><strong>Invited By : </strong>  ${invite.invitationBy.name}</p>
+            </div>
+                
+
+            `
+
+            invitationsContainer.appendChild(inviteContainer)
+
+        }
     }
+
 })

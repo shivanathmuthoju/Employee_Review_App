@@ -98,14 +98,43 @@
     flex-wrap: wrap;
     overflow: hidden;
     overflow-y: scroll;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+
+    
+}
+
+.dashboard-invitations-container::-webkit-scrollbar {
+    display: none;
 }
 
 .inviteContainer {
     display: flex;
     flex-direction: column;
     justify-content: center ;
+    padding: 20px;
+    overflow: hidden;
+    border: 2px solid #efefef;
+    width: 20vw;
+    border-radius: 10px;
 }
 
+.invite-status-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    
+}
+
+.invite-status-indicator {
+    background-color: #efefef;
+    height: 10px;
+    width: 10px;
+    border-radius: 10px;
+    margin-right: 5px;
+}
 
 .active {
     display: flex;

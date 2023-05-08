@@ -11,6 +11,15 @@ const invitationSchema = new mongoose.Schema({
         ref : "Organization",
         required : true
     },
+    position : {
+        type : String,
+        required : true
+    },
+    isAdmin : {
+        type : mongoose.Schema.Types.Boolean,
+        required : true,
+        default : false
+    },
     inviter : {
         type : String,
         required : true
