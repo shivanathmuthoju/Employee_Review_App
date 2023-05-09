@@ -80,6 +80,8 @@ module.exports.acceptInvite = async (req, res) => {
 
 }
 
+// reject invitation
+
 module.exports.rejectInvite = async (req, res) => {
 
     let invite = await Invitation.findById(req.query.invite);
@@ -89,5 +91,30 @@ module.exports.rejectInvite = async (req, res) => {
     await invite.save();
 
     return res.redirect('back');
+
+}
+
+// get all the employees
+module.exports.getEmployees = async (req, res) => {
+    
+    let user = await req.user.populate('userData');
+    if(user.userType === "Employee") {
+
+        let organization = await Organization.findById(user.userData.company).populate('employees');
+        let users = organization.employees;
+        
+        return res.status(200).json(users);
+        
+
+    }
+    else if(user.userType === "Organization") {
+
+        let organization = await Organization.findById(user.userData._id).populate('employees');
+        let employees = organization.employees;
+
+        return res.status(200).json(employees);
+
+    }
+
 
 }

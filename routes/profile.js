@@ -36,4 +36,7 @@ router.post('/acceptInvitation', profileController.acceptInvite);
 
 router.post('/rejectInvitation', profileController.rejectInvite);
 
+// get employees of the organization
+
+router.get('/getEmployees', profileController.getEmployees)
 module.exports = router;
