@@ -15,13 +15,11 @@ const employeeSchema = new mongoose.Schema({
         required : true
     },
     company : {
-        name : {
-            type : String,
-        },
-        id : {
-            type : mongoose.Schema.Types.ObjectId,
-            ref : 'Organization'
-        }
+            
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'Organization',
+        required : false
+        
     },
     position : {
         type : String

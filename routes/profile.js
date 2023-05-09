@@ -28,4 +28,12 @@ router.post('/addUsers', profileController.sendInvite);
 
 router.get('/getInvitations', profileController.getInvitaions);
 
+// accept user invitation
+
+router.post('/acceptInvitation', profileController.acceptInvite);
+
+//reject user invitation
+
+router.post('/rejectInvitation', profileController.rejectInvite);
+
 module.exports = router;

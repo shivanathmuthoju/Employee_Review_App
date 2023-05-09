@@ -45,9 +45,49 @@ module.exports.getInvitaions = async (req, res) => {
         console.log(invites)
         return res.status(200).json(invites)
     }
-    else if(user.userType === "Employee" && user.userData.company.length === undefined) {
+    else if(user.userType === "Employee" && user.userData.company === undefined) {
         let invites = await Invitation.find({email : user.email, status : "pending"}).populate('company').populate('invitationBy');
         return res.status(200).json(invites)
     }
+
+}
+
+// accept invitation
+
+module.exports.acceptInvite = async (req, res) => {
+
+    let user = await req.user.populate('userData');
+    let invite = await Invitation.findById(req.query.invite).populate('company')
+    let employee = await Employee.findById(user.userData._id)
+    let organization = await Organization.findById(invite.company)
+    
+    employee.company = invite.company._id;
+    employee.position = invite.position;
+    employee.isAdmin = invite.isAdmin;
+    await employee.save();
+
+    invite.status = "accepted";
+
+    await invite.save();
+
+    organization.employees.push(employee._id)
+
+    await organization.save();
+
+   
+    return res.redirect('/')
+    
+
+}
+
+module.exports.rejectInvite = async (req, res) => {
+
+    let invite = await Invitation.findById(req.query.invite);
+
+    invite.status = "rejected";
+
+    await invite.save();
+
+    return res.redirect('back');
 
 }
