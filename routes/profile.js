@@ -38,5 +38,18 @@ router.post('/rejectInvitation', profileController.rejectInvite);
 
 // get employees of the organization
 
-router.get('/getEmployees', profileController.getEmployees)
+router.get('/getEmployees', profileController.getEmployees);
+
+// assign feedbacks to employees
+
+router.post('/assignFeedback', profileController.createFeedback);
+
+// assigned Feedbacks
+
+router.get('/assignedFeedbacks', profileController.getAssignedFeedbacks);
+
+// requested Feedbacks
+
+router.get('/getRequestedFeedbacks', profileController.getRequestedFeedbacks)
+
 module.exports = router;

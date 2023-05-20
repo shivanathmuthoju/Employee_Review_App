@@ -13,7 +13,13 @@ const reviewSchema = new mongoose.Schema({
     },
     assignedBy : {
         type : mongoose.Schema.Types.ObjectId,
-        required : true
+        required : true,
+        refPath : 'assigneeType'
+    },
+    assigneeType : {
+        type : String,
+        required : true,
+        enum : ['Employee', 'Organization']
     },
     rating : {
         type : Number,
@@ -21,8 +27,16 @@ const reviewSchema = new mongoose.Schema({
         required : true
     },
     feedback : {
+        type : String
+    },
+    status : {
         type : String,
+        required : true,
+        default : "pending",
+        enum : ['pending', 'done']
     }
+}, {
+    timestamps : true
 });
 
 const Review = mongoose.model("Review", reviewSchema);

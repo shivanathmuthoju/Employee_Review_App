@@ -2,6 +2,7 @@ const User = require('../models/users');
 const Employee = require('../models/employees');
 const Organization = require('../models/organizations');
 const Invitation = require('../models/invitations');
+const Review = require('../models/reviews');
 
 module.exports.home = async (req, res) => {
     
@@ -22,7 +23,7 @@ module.exports.sendInvite = async (req, res) => {
     let user = await req.user.populate('userData');
     await Invitation.create({
         email : req.body.email,
-        company : (user.userType == "Employee") ? user.userData.company.id : user.userData._id,
+        company : (user.userType == "Employee") ? user.userData.company : user.userData._id,
         position : req.body.position,
         isAdmin : (req.body.isAdmin == "on") ? true : false,
         inviter : user.userType,
@@ -116,5 +117,85 @@ module.exports.getEmployees = async (req, res) => {
 
     }
 
+
+}
+
+// create feedback
+
+module.exports.createFeedback = async(req, res) => {
+
+    let user = await req.user.populate('userData');
+
+    if(req.body.feedbackFor === req.body.assignedTo) {
+
+        console.log("Both fields cannot be same");
+        return res.redirect('back');
+
+    }
+
+    let findReview = await Review.find(
+        {$and : [
+            {status : 'pending'},
+            {reviewer : req.body.assignedTo},
+            {reviewee : req.body.feedbackFor},
+            {assignedBy : user.userData._id}
+        ]
+        }   
+    )
+
+    if(findReview.length > 0) {
+        console.log("A feedback is already assigned");
+        return res.redirect('back');
+    }
+    else {
+        let createdReview = await Review.create({
+            reviewer : req.body.assignedTo,
+            reviewee : req.body.feedbackFor,
+            assignedBy : req.user.userData._id,
+            assigneeType : req.user.userType,
+        })
+
+        console.log("Feedback assigned");
+        console.log(createdReview);
+        
+    }
+
+    return res.redirect('back');
+
+
+}
+
+
+// get assigned feedbacks
+
+module.exports.getAssignedFeedbacks = async(req, res) => {
+
+    let user = await req.user.populate('userData');
+
+    let feedbacks = await Review.find({$and : [ 
+        {assignedBy : user.userData._id},
+        {status : 'pending'}
+    ]
+}).populate('reviewer').populate('reviewee');
+
+    return res.status(200).json(feedbacks)
+
+};
+
+
+// get all the requested feedbacks
+
+module.exports.getRequestedFeedbacks = async (req, res) => {
+
+    let user = await req.user.populate('userData');
+
+    let feedbacks = await Review.find({
+        $and : [
+            {reviewer : user.userData._id},
+            {status : "pending"}
+        ]
+    }).populate('reviewer').populate('reviewee').populate("assignedBy");
+
+        return res.status(200).json(feedbacks)
 
 }

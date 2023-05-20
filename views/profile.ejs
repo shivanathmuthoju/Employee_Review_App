@@ -171,7 +171,9 @@
 
         <div class="menu-container">
             <button class="menu-btns" id="menuHomeBtn"><i class="menu-icons fa-solid fa-house"></i></button>
-            <button class="menu-btns" id="menuFeedbacksBtn" data-type='<%= user.userType %>' data-admin='<%= (user.userType === "Employee") ? user.userData.isAdmin : false %>'><i class="menu-icons fa-solid fa-comments"></i></button>
+            <% if((user.userType === "Employee" && user.userData.company != undefined) || (user.userType === "Organization")) { %>
+                <button class="menu-btns" id="menuFeedbacksBtn" data-type='<%= user.userType %>' data-admin='<%= (user.userType === "Employee") ? user.userData.isAdmin : false %>'><i class="menu-icons fa-solid fa-comments"></i></button>
+            <% } %>
             <% if(user.userType === "Organization" || (user.userType === "Employee" && user.userData.isAdmin) || (user.userType === "Employee" && user.userData.company === undefined)) { %>
                 <button class="menu-btns" data-type='<%= user.userType %>' data-admin='<%= (user.userType === "Employee") ? user.userData.isAdmin : false %>' id="menuInvitationsBtn"><i class="menu-icons fa-solid fa-envelope"></i></button>
             <% } %>

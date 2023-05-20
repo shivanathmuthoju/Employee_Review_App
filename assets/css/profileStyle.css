@@ -1,4 +1,4 @@
-:root {
+/* :root {
     --primary-blue : #215AD5;
     --mid-blue : #8180D5;
     --pink : #E2A7D4;
@@ -8,7 +8,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
 
 .container {
     flex-direction: column;
@@ -97,12 +97,6 @@
     width: 50%;
 }
 
-.flex-c {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; 
-}
 
 #addUsersForm {
     display: flex;
@@ -204,6 +198,8 @@
     align-items: center;
     height: 15%;
     border-bottom: 1px solid #efefef;
+    position: fixed;
+    top: 0;
     
 }
 
@@ -240,18 +236,46 @@
 
 .dashboard-feedbacks-container {
     width: 100%;
-    height: 85%;
+    max-height: 85%;
     overflow-y: scroll;
     padding: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
+    height: min-content;
 }
 
 .dashboard-feedbacks-container::-webkit-scrollbar {display: none;}
 
 .dashboard-feedback-btns:hover { color : var(--primary-blue); }
 
+
+#assignFeedbackForm {
+
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: flex-start;
+
+}
+
+
+table {
+    text-align: left;
+    border: 2px solid #efefef;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+th {
+    padding-right: 10px;
+}
+
+td {
+    padding: 0px 5px;
+}
 .menu-active 
 {
     font-weight: 600;
@@ -262,6 +286,18 @@
 .active {
     display: flex;
 
+}
+
+
+.flex-c {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+
+form.flex-c {
+    align-items: flex-start;
 }
 
 /* Notification style */
