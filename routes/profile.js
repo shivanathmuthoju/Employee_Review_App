@@ -52,4 +52,11 @@ router.get('/assignedFeedbacks', profileController.getAssignedFeedbacks);
 
 router.get('/getRequestedFeedbacks', profileController.getRequestedFeedbacks)
 
+//submit Feedbacks
+
+router.post('/submitFeedback', profileController.submitFeedback);
+
+//received Feedbacks
+
+router.get('/receivedFeedbacks', profileController.getReceivedFeedbacks);
 module.exports = router;

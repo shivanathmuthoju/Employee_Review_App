@@ -1,20 +1,24 @@
 const mongoose = require('mongoose');
+const { schema } = require('./users');
 
 const reviewSchema = new mongoose.Schema({
     reviewer : {
         type : mongoose.Schema.Types.ObjectId,
         ref : 'Employee',
-        required : true
+        required : true,
+        autopopulate : true
     },
     reviewee : {
         type : mongoose.Schema.Types.ObjectId,
         ref : 'Employee',
-        required : true
+        required : true,
+        autopopulate : true
     },
     assignedBy : {
         type : mongoose.Schema.Types.ObjectId,
         required : true,
-        refPath : 'assigneeType'
+        refPath : 'assigneeType',
+        autopopulate : true
     },
     assigneeType : {
         type : String,
@@ -38,6 +42,8 @@ const reviewSchema = new mongoose.Schema({
 }, {
     timestamps : true
 });
+
+schema.plugin(require('mongoose-autopopulate'));
 
 const Review = mongoose.model("Review", reviewSchema);
 

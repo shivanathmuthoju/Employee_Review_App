@@ -29,9 +29,13 @@
     place-items: center;
 }
 
+#background {
+    height: 100vh;
+    width: 50vw;
+}
 .home_text_container {
     height: 100%;
-    width: 100%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;

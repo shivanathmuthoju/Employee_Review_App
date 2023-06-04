@@ -58,6 +58,8 @@
     
 }
 
+
+
 .section-title {
     margin-bottom: 50px;
 }
@@ -71,7 +73,6 @@
     align-items: center;
     width: 100%;
     height: 100%;
-   
 
 }
 
@@ -86,6 +87,66 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.userDetailsContainer {
+    /* background-color: #2f2e41; */
+    background-image: linear-gradient(to right, var(--primary-blue), var(--mid-blue), var(--pink));
+    padding: 15px;
+    width: 90vw;
+    border: 2px solid #efefef;
+    border-radius: 10px;
+    margin: 10px;
+    height: 50%;
+    margin-top: 25px;
+    color: white;
+}
+
+.userDetailsContainer  > i {
+    font-size: 10vh;
+    /* color: var(--mid-blue); */
+    margin-bottom: 15px;
+}
+
+#userName {
+    font-weight: 600;
+    font-size: 1.25rem;
+    text-transform: capitalize;
+}
+
+#userEmail {
+    font-size: 1.125rem;
+    margin-top: 5px;
+}
+
+.userCardsContainer {
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+}
+
+.userCard {
+    border: 2px solid #efefef;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    margin: 10px;
+    border-radius: 10px;
+    /* background-color: #2f2e41; */
+    background-image: linear-gradient(to top, var(--primary-blue), var(--mid-blue), var(--pink));
+    color: white;
+}
+
+.userCard > p {
+    font-weight: 800;
+    font-size: 5rem;
+    /* color: var(--mid-blue); */
 }
 
 #dashboard-add-users {
@@ -136,7 +197,8 @@
     padding: 20px;
     overflow: hidden;
     border: 2px solid #efefef;
-    width: 20vw;
+    max-width: 20vw;
+    width: max-content;
     border-radius: 10px;
     margin: 15px;
 }
@@ -198,7 +260,7 @@
     align-items: center;
     height: 15%;
     border-bottom: 1px solid #efefef;
-    position: fixed;
+    position: relative;
     top: 0;
     
 }
@@ -243,7 +305,7 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    height: min-content;
+    height: 85%;
 }
 
 .dashboard-feedbacks-container::-webkit-scrollbar {display: none;}
@@ -275,6 +337,8 @@ th {
 
 td {
     padding: 0px 5px;
+    padding-left: 0px;
+    max-width: 20vw;
 }
 .menu-active 
 {

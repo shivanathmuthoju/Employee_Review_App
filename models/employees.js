@@ -33,17 +33,7 @@ const employeeSchema = new mongoose.Schema({
         type : mongoose.Schema.Types.ObjectId,
         ref : 'Review'
     }],
-    reviewsReceived : [
-        {
-            rating : {
-                type : mongoose.Schema.Types.Number,
-            },
-            reviewId : {
-                type : mongoose.Schema.Types.ObjectId,
-                ref : 'Review'
-            }
-        }
-    ]
+    ratings : [ { type : mongoose.Schema.Types.Number }]
 
 },{
     timestamps : true

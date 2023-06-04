@@ -99,12 +99,14 @@ module.exports.rejectInvite = async (req, res) => {
 module.exports.getEmployees = async (req, res) => {
     
     let user = await req.user.populate('userData');
+  
     if(user.userType === "Employee") {
 
         let organization = await Organization.findById(user.userData.company).populate('employees');
-        let users = organization.employees;
-        
-        return res.status(200).json(users);
+        let AllUsers = await organization.employees;
+        let employees = await AllUsers.filter((emp) => String(emp._id) != String(user.userData._id));
+
+        return res.status(200).json(employees);
         
 
     }
@@ -112,7 +114,6 @@ module.exports.getEmployees = async (req, res) => {
 
         let organization = await Organization.findById(user.userData._id).populate('employees');
         let employees = organization.employees;
-
         return res.status(200).json(employees);
 
     }
@@ -157,7 +158,10 @@ module.exports.createFeedback = async(req, res) => {
 
         console.log("Feedback assigned");
         console.log(createdReview);
-        
+
+        let Reviewer = await Employee.findById(req.body.assignedTo);
+        await Reviewer.reviewsRequested.push(createdReview._id)
+        await Reviewer.save();
     }
 
     return res.redirect('back');
@@ -172,11 +176,16 @@ module.exports.getAssignedFeedbacks = async(req, res) => {
 
     let user = await req.user.populate('userData');
 
-    let feedbacks = await Review.find({$and : [ 
-        {assignedBy : user.userData._id},
-        {status : 'pending'}
-    ]
-}).populate('reviewer').populate('reviewee');
+//     let feedbacks = await Review.find({$and : [ 
+//         {assignedBy : user.userData._id},
+//         {status : 'pending'}
+//     ]
+// }).populate('reviewer').populate('reviewee');
+    
+    let feedbacks = await Review.find(
+            {assignedBy : user.userData._id}
+        
+    ).populate('reviewer').populate('reviewee');
 
     return res.status(200).json(feedbacks)
 
@@ -188,14 +197,47 @@ module.exports.getAssignedFeedbacks = async(req, res) => {
 module.exports.getRequestedFeedbacks = async (req, res) => {
 
     let user = await req.user.populate('userData');
-
-    let feedbacks = await Review.find({
+    let feedbacks = await Review.findOne({
         $and : [
             {reviewer : user.userData._id},
             {status : "pending"}
         ]
     }).populate('reviewer').populate('reviewee').populate("assignedBy");
 
-        return res.status(200).json(feedbacks)
+    return res.status(200).json(feedbacks)
+
+}
+
+
+//submit Feedbacks
+
+module.exports.submitFeedback = async(req, res) => {
+    
+    let review = await Review.findById(req.query.id);
+    review.rating = req.body.feedbackRating;
+    review.feedback = req.body.feedbackDescription;
+    review.status = "done";
+
+    await review.save();
+    let reviewee = await Employee.findById(review.reviewee);
+
+    await reviewee.ratings.push(review.rating);
+    await reviewee.save();
+
+    return res.redirect('back');
+};
+
+
+module.exports.getReceivedFeedbacks = async(req, res) => {
+    let user = await req.user.populate('userData');
+    
+    let reviews = await Review.find({
+        $and : [
+            {reviewee : user.userData._id},
+            {status : "done"}
+        ]
+    }).populate('reviewee').populate('reviewer').populate('assignedBy')
+
+    return res.status(200).json(reviews);
 
 }

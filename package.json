@@ -8,6 +8,7 @@
     "express-session": "^1.17.3",
     "font-awesome": "^4.7.0",
     "mongoose": "^7.0.3",
+    "mongoose-autopopulate": "^1.0.1",
     "notyf": "^3.10.0",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0"
