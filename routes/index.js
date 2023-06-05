@@ -7,11 +7,12 @@ const passport = require('../config/passport-local');
 
 
 router.get('/', homeController.home);
-// router.get('/welcome', homeController.welcome)
+
 
 //signin 
-
+// ------ sign in page ---------
 router.get('/signin', signInController.signin);
+
 router.post('/signin', 
     passport.authenticate(
         'local',

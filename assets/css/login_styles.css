@@ -72,7 +72,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* margin-top: 20px; */
+    
 }
 
 .form_container form {
@@ -107,6 +107,7 @@
     margin-bottom: 10px;
     cursor: pointer;
     width: 100%;
+    margin-top: 5px;
 }
 
 /* ***************
@@ -133,36 +134,21 @@ user type section */
     outline: none;
 }
 
-/* #user_type_section {
-    height: 100%;
-    width : 100%; 
-} */
 
-/* Individual Sign in section */
-
-/* #organizationRegistrationForm {
-    height: 100%;
-    display: grid;
-    place-items: center;
-} */
 
 #user_type_section {
     height: 0;
-    /* display: none; */
 }
 
 #employee_register_section{
     height: 0;
-    /* display: none; */
 }
 #organizations_register_section  {
     height: 0;
-    /* display: none; */
 }
 
 #organizations_setup_section {
     height: 0;
-    /* display: none; */
 }
 
 .organization_ {

@@ -43,5 +43,4 @@ app.listen(port, () => {
 
 app.use('/', require('./routes/index'));
 app.use('/profile', require('./routes/profile'));
-// app.use('/signin', require('./routes/signin'));
-// app.use('/signup', require('./routes/signup'));
+

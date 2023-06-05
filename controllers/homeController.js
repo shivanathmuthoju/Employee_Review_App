@@ -4,7 +4,7 @@ module.exports.home = (req, res) => {
         return res.redirect('/profile');
     }
 
-    return res.render('home.ejs', {title : "Hey"})
+    return res.render('home.ejs')
 }
 
 module.exports.welcome = (req, res) => {

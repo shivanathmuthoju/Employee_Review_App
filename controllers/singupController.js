@@ -1,5 +1,6 @@
+// sign up controller
+
 const User = require('../models/users')
-// const Users = require('../models/users')
 const Employee = require('../models/employees');
 const Organization = require('../models/organizations');
 
@@ -11,17 +12,19 @@ module.exports.signup = (req,res) => {
     return res.render('../views/signup.ejs')
 }
 
+// create user
+
 module.exports.createUser = async (req, res) => {
-    let user = await User.find({email : req.body.email})
-    
+    let user = await User.find({email : req.body.email}) // check if user exists
+
     if(user.length > 0) {
         console.log("User Exists", user);
         return res.redirect('/signin');
     }
     else {
-        console.log(req.query)
+        
         if(req.query.type == "Employee") {
-            console.log("Employee Function")
+            
             let userCreated = await User.create({
                 email : req.body.email,
                 password : req.body.password,
@@ -40,7 +43,7 @@ module.exports.createUser = async (req, res) => {
             return res.render('welcome.ejs');
         }
         else if(req.query.type == "Organization") {
-            console.log("Organization Function")
+            
             let userCreated = await User.create({
                 email : req.body.email,
                 password : req.body.password,

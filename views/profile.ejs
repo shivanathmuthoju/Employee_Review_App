@@ -144,9 +144,7 @@
                                 <p><%= user.userData.teamSize %></p>
                                 <h4>Team Size</h4>
                             </div>
-                           
-                           
-
+                          
                         </div>
                        
 
@@ -181,11 +179,8 @@
                     <h1>Your Invitaions</h1>
 
                     <div class="dashboard-invitations-container">
-
-                        
-
+                       
                     </div>
-
 
                 </div>
 
@@ -212,7 +207,7 @@
             <% } %>
 
         </div>
-
+        <!-- menu -->
         <div class="menu-container">
             <button class="menu-btns" id="menuHomeBtn"><i class="menu-icons fa-solid fa-house"></i></button>
             <% if((user.userType === "Employee" && user.userData.company != undefined) || (user.userType === "Organization")) { %>
@@ -231,10 +226,7 @@
     </div>
 
     
-    <!-- <div class="notification-container success">
-        <p class="notification-msg">Hey There!!</p>
-        <a href="" class="notification-close"></a>
-    </div> -->
+    
 <script src="js/dashboardHandler.js"></script>
     
 </body>

@@ -7,8 +7,6 @@ const Review = require('../models/reviews');
 module.exports.home = async (req, res) => {
     
     let user = await req.user.populate('userData');
-    // console.log(user)
-    let invitaions = await Invitation.find({email : req.user.email})
     return res.render('profile.ejs', {user : user})
     
 }
@@ -19,7 +17,7 @@ module.exports.signOut = (req, res) => {
 
 // creating and sending invites
 module.exports.sendInvite = async (req, res) => {
-    console.log(req.body)
+   
     let user = await req.user.populate('userData');
     await Invitation.create({
         email : req.body.email,
@@ -43,7 +41,7 @@ module.exports.getInvitaions = async (req, res) => {
     if(user.userType === "Organization" || (user.userType === "Employee" && user.userData.isAdmin)) {
 
         let invites = await Invitation.find({invitationBy : user.userData._id}).populate('company').populate('invitationBy');
-        console.log(invites)
+     
         return res.status(200).json(invites)
     }
     else if(user.userType === "Employee" && user.userData.company === undefined) {
@@ -157,7 +155,7 @@ module.exports.createFeedback = async(req, res) => {
         })
 
         console.log("Feedback assigned");
-        console.log(createdReview);
+        
 
         let Reviewer = await Employee.findById(req.body.assignedTo);
         await Reviewer.reviewsRequested.push(createdReview._id)
@@ -176,12 +174,6 @@ module.exports.getAssignedFeedbacks = async(req, res) => {
 
     let user = await req.user.populate('userData');
 
-//     let feedbacks = await Review.find({$and : [ 
-//         {assignedBy : user.userData._id},
-//         {status : 'pending'}
-//     ]
-// }).populate('reviewer').populate('reviewee');
-    
     let feedbacks = await Review.find(
             {assignedBy : user.userData._id}
         
@@ -227,7 +219,7 @@ module.exports.submitFeedback = async(req, res) => {
     return res.redirect('back');
 };
 
-
+// gets received feedbacks
 module.exports.getReceivedFeedbacks = async(req, res) => {
     let user = await req.user.populate('userData');
     

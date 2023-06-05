@@ -1,7 +1,6 @@
 let userTypeSection = document.getElementById("user_type_section");
 let employeeRegisterSection = document.getElementById("employee_register_section");
 let organizationRegisterSection = document.getElementById("organizations_register_section");
-// let organizationSetupSection = document.getElementById("organizations_setup_section");
 let employeeRegistrationForm = document.getElementById("employeeRegistrationForm");
 let organizationRegistrationForm = document.getElementById("organizationRegistrationForm");
 
@@ -16,7 +15,7 @@ let sections = [
     userTypeSection, 
     employeeRegisterSection, 
     organizationRegisterSection, 
-    // organizationSetupSection
+    
 ]
 
 // function to set all the heights to zero except for the active section
@@ -44,15 +43,12 @@ document.getElementById("employeeBtn").addEventListener('click', () => {
 
 document.getElementById("OrganizationBtn").addEventListener('click', () => {
     hideAllSections(organizationRegisterSection); //shows organization register section
-    // let inputs = [...document.querySelectorAll("#organizations_setup_section input,select")]
-    // console.log(inputs)
-    // inputs.forEach(input => {
-    //     input.setAttribute("disabled", true)
-    // })
 
 })
 
-// employee registration form 
+// employee and organizatin registration form 
+
+// checks if both the passwords are matching
 
 employeeRegistrationForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -79,20 +75,5 @@ organizationRegistrationForm.addEventListener('submit', (e) => {
         alert("Password Mismatch")
     }
 })
-
-// organizationCredBtn.addEventListener('click', (e) => {
-//     e.preventDefault();
-//     organizationRegistrationForm.reportValidity();
-//     let passwordValue = document.getElementById("PasswordOrganization").value;
-//     let confirmPasswordValue = document.getElementById("ConfirmPasswordOrganization").value;
-
-//     if(passwordValue === confirmPasswordValue) {
-//         console.log("Passwords Match");
-        
-//     }
-//     else {
-//         alert("Password Mismatch");
-//     }
-// })
 
 
